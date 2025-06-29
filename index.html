@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🎧 MP3 Streamer from YouTube</title>
+  <style>
+    body {
+      background: #0e1621;
+      color: #cfd8dc;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #42a5f5;
+      margin-bottom: 30px;
+    }
+    input {
+      padding: 10px;
+      width: 280px;
+      border: none;
+      border-radius: 6px;
+      background: #1c2733;
+      color: white;
+    }
+    button {
+      padding: 10px 16px;
+      background: #42a5f5;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    audio {
+      margin-top: 40px;
+      width: 90%;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎧 MP3 Streamer from YouTube</h1>
+  <input id="ytlink" type="text" placeholder="Paste YouTube Link">
+  <button onclick="playSong()">▶ Play</button>
+  <br><br>
+  <audio id="player" controls autoplay></audio>
+
+  <script>
+    const api = "https://j-dywp.onrender.com"; // <-- এখানে আপনার Render backend URL বসান
+
+    function playSong() {
+      const link = document.getElementById("ytlink").value.trim();
+      if (!link) return alert("Please paste a YouTube link");
+      const encodedLink = encodeURIComponent(link);
+      const audio = document.getElementById("player");
+      audio.src = `${api}/stream-direct?url=${encodedLink}`;
+      audio.play();
+    }
+  </script>
+</body>
+  </html>
